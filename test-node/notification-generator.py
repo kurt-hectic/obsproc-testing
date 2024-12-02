@@ -124,7 +124,8 @@ for file_name in files:
 
     # Process the data as needed
 
-    time.sleep(msg_rate / 60)
+    if msg_rate > 0:
+        time.sleep(msg_rate / 60)
     counter = counter + 1
 
 
