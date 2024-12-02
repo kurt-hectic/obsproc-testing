@@ -35,20 +35,20 @@ msg_rate = int(os.environ.get("MSG_RATE_PER_SECOND"))
 
 data_dir = os.environ.get("DATA_DIR")
 
-print("""Starting notification generator with the following parameters: 
-            content_integrated_rate {:.0%}, 
-            integrity_checksum_rate {:.0%}, 
-            integrity_length_content_rate {:.0%}, 
-            integrity_length_link_rate {:.0%},
-            integrity_schema_rate {:.0%}, 
-            integrity_pubdate_rate {:.0%},
-            integrity_no_dataid_rate {:.0%},
-            nr_duplicates_max {},
-            nr_duplicates_min {},
-            duplicate_max_delay_ms {},
-            nr_caches {},
-            msg_rate {}
-            """.format(content_integrated_rate,integrity_checksum_rate,integrity_length_content_rate,integrity_length_link_rate,integrity_schema_rate,integrity_pubdate_rate,integrity_no_dataid_rate,nr_duplicates_max,nr_duplicates_min,duplicate_max_delay_ms,nr_caches,msg_rate) )
+# print("""Starting notification generator with the following parameters: 
+#             content_integrated_rate {:.0%}, 
+#             integrity_checksum_rate {:.0%}, 
+#             integrity_length_content_rate {:.0%}, 
+#             integrity_length_link_rate {:.0%},
+#             integrity_schema_rate {:.0%}, 
+#             integrity_pubdate_rate {:.0%},
+#             integrity_no_dataid_rate {:.0%},
+#             nr_duplicates_max {},
+#             nr_duplicates_min {},
+#             duplicate_max_delay_ms {},
+#             nr_caches {},
+#             msg_rate {}
+#             """.format(content_integrated_rate,integrity_checksum_rate,integrity_length_content_rate,integrity_length_link_rate,integrity_schema_rate,integrity_pubdate_rate,integrity_no_dataid_rate,nr_duplicates_max,nr_duplicates_min,duplicate_max_delay_ms,nr_caches,msg_rate) )
 
 
 
