@@ -8,7 +8,7 @@ services:
     ports:
       - "80:80"
     environment:
-      - FAIL_RATE=0.5
+      - FAIL_RATE=0
       - NGINX_HOST=obsproc-test-env.wis2-testing.net
 
     volumes:

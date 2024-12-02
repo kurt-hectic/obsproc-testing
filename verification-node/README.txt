@@ -1,0 +1,1 @@
+mosquitto_sub -h $BROKER_HOST -p $BROKER_PORT --username everyone -P everyone  -t "cache/a/wis2/swe/#/data/core/weather/surface-based-observations/synop" |  while read line ; do echo $line | jq -r '.links[0].href' | wget --input-file=-  ; done
