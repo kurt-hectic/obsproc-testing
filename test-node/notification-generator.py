@@ -31,7 +31,7 @@ duplicate_max_delay_ms = int(os.environ.get("DUPLICATE_MAX_DELAY_MS"))
 nr_caches = int(os.environ.get("NR_CACHES"))
 cache_host = os.environ.get("CACHE_HOST")
 cache_domain = os.environ.get("CACHE_DOMAIN")
-msg_rate = int(os.environ.get("MSG_RATE"))
+msg_rate = int(os.environ.get("MSG_RATE_PER_SECOND"))
 
 data_dir = os.environ.get("DATA_DIR")
 
@@ -120,7 +120,7 @@ for file_name in files:
     # Process the data as needed
 
     if msg_rate > 0:
-        time.sleep(msg_rate / 60)
+        time.sleep(  1/msg_rate )
     counter = counter + 1
 
 
