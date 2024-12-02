@@ -63,7 +63,7 @@ def process_file(file_name,counter):
 
     n = copy.deepcopy(notification_template)
 
-    n["properties"]["data_id"] = n["properties"]["data_id"] + "-" + wsi + "-" + observation_time
+    n["properties"]["data_id"] = n["properties"]["data_id"] + wsi + "-" + observation_time
     n["properties"]["wigos_station_identifier"] = wsi
     n["id"] = n["id"] + "-" + str(counter)
 
@@ -120,7 +120,7 @@ for file_name in files:
     
     notification = process_file(file_name,counter)
 
-    print( json.dumps(notification,indent=2))
+    print( json.dumps(notification,indent=None))
 
     # Process the data as needed
 
