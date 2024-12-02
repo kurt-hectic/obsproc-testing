@@ -9,7 +9,7 @@ services:
       - "80:80"
     environment:
       - FAIL_RATE=0.5
-      - NGINX_HOST=test-cache.wis2-testing.net
+      - NGINX_HOST=obsproc-test-env.wis2-testing.net
 
     volumes:
       - ./test-data/out_test:/usr/share/nginx/html/data/cache/a/ru-aviamettelecom/data/core/weather/surface-based-observations/synop
@@ -35,7 +35,7 @@ services:
       - DUPLICATE_MAX_DELAY_MS=1000
       - NR_CACHES=1 # only one cache simulated
       - MSG_RATE=10
-      - CACHE_HOST=test-cache
+      - CACHE_HOST=obsproc-test-env
       - CACHE_DOMAIN=wis2-testing.net
       - DATA_DIR=/data
 
