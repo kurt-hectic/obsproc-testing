@@ -1,0 +1,44 @@
+services:
+  test-broker:
+    build: test-broker/.
+    ports:
+      - "1883:1883"
+  test-cache:
+    build: test-cache/.
+    ports:
+      - "80:80"
+    environment:
+      - FAIL_RATE=0.5
+      - NGINX_HOST=test-cache.wis2-testing.net
+
+    volumes:
+      - ./test-data/out_test:/usr/share/nginx/html/data/cache/a/ru-aviamettelecom/data/core/weather/surface-based-observations/synop
+    
+
+  test-node:
+    build: test-node/.
+
+    command: tail -F anything
+
+    environment:
+      - BROKER_HOST=test-broker
+      - BROKER_PORT=1883
+      - CONTENT_INTEGRATED_RATE=0.3
+      - INTEGRITY_CHECKSUM_RATE=0
+      - INTEGRITY_LENGTH_CONTENT_RATE=0
+      - INTEGRITY_LENGTH_LINK_RATE=0
+      - INTEGRITY_SCHEMA_RATE=0
+      - INTEGRITY_PUBDATE_RATE=0
+      - INTEGRITY_NO_DATAID_RATE=0
+      - NR_DUPLICATES_MAX=1 # no duplicates
+      - NR_DUPLICATES_MIN=1 # no duplicates
+      - DUPLICATE_MAX_DELAY_MS=1000
+      - NR_CACHES=1 # only one cache simulated
+      - MSG_RATE=10
+      - CACHE_HOST=test-cache
+      - CACHE_DOMAIN=wis2-testing.net
+      - DATA_DIR=/data
+
+    volumes: 
+      - ./test-data/out_test:/data
+      - ./test-node:/app
