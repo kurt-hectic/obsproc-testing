@@ -70,11 +70,6 @@ def process_file(file_name,counter):
     if random.random() >= content_integrated_rate:
         n["properties"].pop("content")
     else:
-
-        r= random.random()
-        print(r)
-        print(integrity_length_content_rate)
-
         n["properties"]["content"] = {
             "encoding": "base64",
             "value":  base64.b64encode(data).decode("utf-8"),
