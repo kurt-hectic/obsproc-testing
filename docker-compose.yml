@@ -12,7 +12,7 @@ services:
       - NGINX_HOST=obsproc-test-env.wis2-testing.net
 
     volumes:
-      - ./test-data/out_test:/usr/share/nginx/html/data/cache/a/ru-aviamettelecom/data/core/weather/surface-based-observations/synop
+      - ./test-data/out:/usr/share/nginx/html/data/cache/a/ru-aviamettelecom/data/core/weather/surface-based-observations/synop
     
 
   test-node:
@@ -40,5 +40,5 @@ services:
       - DATA_DIR=/data
 
     volumes: 
-      - ./test-data/out_test:/data
+      - ./test-data/out:/data
       - ./test-node:/app
