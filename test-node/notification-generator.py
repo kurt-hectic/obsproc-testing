@@ -77,8 +77,8 @@ def process_file(file_name,counter):
         }
 
     
-    sha512_hash = hashlib.sha512(data)
-    n["properties"]["integrity"]["value"] = sha512_hash.hexdigest() + ("xx" if random.random() < integrity_checksum_rate else "")
+    b64_sha512_hash = base64.b64encode(hashlib.sha512(data).digest()).decode("utf-8")
+    n["properties"]["integrity"]["value"] = b64_sha512_hash + ("xx" if random.random() < integrity_checksum_rate else "")
 
     n["links"][0]["length"] = len(data) + (10 if random.random() < integrity_length_link_rate else 0)
 
@@ -101,7 +101,9 @@ def process_file(file_name,counter):
         else:
             cache = "http://{host}.{domain}".format(host=cache_host,domain=cache_domain)
 
-        n_new["links"][0]["href"] = n_new["links"][0]["href"].replace("http://test-cache",cache).replace("WIGOS_0-20000-0-20674_20240618T120000",file_name)
+        rel_filename = file_name.split("/")[-2] + "/" + file_name.split("/")[-1]
+
+        n_new["links"][0]["href"] = n_new["links"][0]["href"].replace("http://test-cache",cache).replace("WIGOS_0-20000-0-20674_20240618T120000",rel_filename)
 
         return n_new
 
@@ -109,20 +111,14 @@ def process_file(file_name,counter):
 
 
 counter = 0
+files = []
+for root, dirs, file_names in os.walk(data_dir):
+    for file_name in file_names:
+        if file_name.endswith(".bufr4"):
+            file_path = os.path.relpath(os.path.join(root, file_name), data_dir)
+            notification = process_file(file_path,counter)
+            print( json.dumps(notification,indent=None))
 
-files = [f for f in os.listdir(data_dir) if os.path.isfile(os.path.join(data_dir, f))]
-for file_name in files:
-    
-    notification = process_file(file_name,counter)
-
-    print( json.dumps(notification,indent=None))
-
-    # Process the data as needed
-
-    if msg_rate > 0:
-        time.sleep(  1/msg_rate )
-    counter = counter + 1
-
-
-    
-
+            if msg_rate > 0:
+                time.sleep(  1/msg_rate )
+            counter = counter + 1

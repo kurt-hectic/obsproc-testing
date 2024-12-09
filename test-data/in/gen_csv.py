@@ -2,7 +2,7 @@ import csv
 
 from datetime import datetime, timedelta
 
-nr_stations = 100
+nr_stations = 1000
 nr_obs = 1000
 
 start_date = datetime(2024,1,1)
@@ -18,12 +18,13 @@ header = { "year": None ,"month": None ,"day": None ,"hour": None ,"minute": Non
 "temperature":11.22,"pressure":22.33 }
  
 
-with open('obs.csv', 'w', newline='\n') as csvfile:
-    writer = csv.DictWriter(csvfile, delimiter='|', fieldnames = header.keys() )
-    
-    writer.writeheader()
-    
-    for wsi in wsis:
+for wsi in wsis:
+
+    with open("obs1m"+wsi+".csv", 'w', newline='\n') as csvfile:
+        writer = csv.DictWriter(csvfile, delimiter='|', fieldnames = header.keys() )
+        
+        writer.writeheader()
+        
         for o in obs:
         
             temp2 = wsi.split("-")
