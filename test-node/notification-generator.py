@@ -32,6 +32,7 @@ nr_caches = int(os.environ.get("NR_CACHES"))
 cache_host = os.environ.get("CACHE_HOST")
 cache_domain = os.environ.get("CACHE_DOMAIN")
 msg_rate = int(os.environ.get("MSG_RATE_PER_SECOND"))
+max_messages = int(os.environ.get("MAX_MESSAGES"), 0)
 
 data_dir = os.environ.get("DATA_DIR")
 
@@ -122,3 +123,6 @@ for root, dirs, file_names in os.walk(data_dir):
             if msg_rate > 0:
                 time.sleep(  1/msg_rate )
             counter = counter + 1
+
+            if max_messages > 0 and counter >= max_messages:
+                break
