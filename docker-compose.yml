@@ -23,7 +23,7 @@ services:
     environment:
       - BROKER_HOST=test-broker
       - BROKER_PORT=1883
-      - CONTENT_INTEGRATED_RATE=0.3
+      - CONTENT_INTEGRATED_RATE=1 # all content is integrated
       - INTEGRITY_CHECKSUM_RATE=0
       - INTEGRITY_LENGTH_CONTENT_RATE=0
       - INTEGRITY_LENGTH_LINK_RATE=0
@@ -34,7 +34,7 @@ services:
       - NR_DUPLICATES_MIN=1 # no duplicates
       - DUPLICATE_MAX_DELAY_MS=1000
       - NR_CACHES=1 # only one cache simulated
-      - MSG_RATE_PER_SECOND=100
+      - MSG_RATE_PER_SECOND=10000
       - CACHE_HOST=obsproc-test-env
       - CACHE_DOMAIN=wis2-testing.net
       - DATA_DIR=/data
