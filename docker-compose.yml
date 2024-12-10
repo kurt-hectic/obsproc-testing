@@ -13,7 +13,6 @@ services:
 
     volumes:
       - ./test-data/${NOTIFICATION_DATA_DIR}:/usr/share/nginx/html/data/cache/a/ru-aviamettelecom/data/core/weather/surface-based-observations/synop
-    
 
   test-node:
     build: test-node/.
