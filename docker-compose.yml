@@ -35,6 +35,7 @@ services:
       - DUPLICATE_MAX_DELAY_MS=${DUPLICATE_MAX_DELAY_MS}
       - NR_CACHES=${NR_CACHES} # only one cache simulated
       - MSG_RATE_PER_SECOND=${MSG_RATE_PER_SECOND}
+      - MAX_MESSAGES=${MAX_MESSAGES}
       - CACHE_HOST=${CACHE_HOST}
       - CACHE_DOMAIN=${CACHE_DOMAIN}
       - DATA_DIR=/data
