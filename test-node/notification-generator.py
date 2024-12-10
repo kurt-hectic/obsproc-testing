@@ -34,6 +34,8 @@ cache_domain = os.environ.get("CACHE_DOMAIN")
 msg_rate = int(os.environ.get("MSG_RATE_PER_SECOND"))
 max_messages = int(os.environ.get("MAX_MESSAGES"), 0)
 
+test_id = os.environ.get("TEST_ID")
+
 data_dir = os.environ.get("DATA_DIR")
 
 # print("""Starting notification generator with the following parameters: 
@@ -64,7 +66,7 @@ def process_file(file_name,counter):
 
     n = copy.deepcopy(notification_template)
 
-    n["properties"]["data_id"] = n["properties"]["data_id"] + wsi + "-" + observation_time
+    n["properties"]["data_id"] = n["properties"]["data_id"]+ "-"+test_id+"-" + wsi + "-" + observation_time
     n["properties"]["wigos_station_identifier"] = wsi
     n["id"] = n["id"] + "-" + str(counter)
 

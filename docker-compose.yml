@@ -39,6 +39,7 @@ services:
       - CACHE_HOST=${CACHE_HOST}
       - CACHE_DOMAIN=${CACHE_DOMAIN}
       - DATA_DIR=/data
+      - TEST_ID=${TEST_ID}
 
     volumes: 
       - ./test-data/${NOTIFICATION_DATA_DIR}:/data
