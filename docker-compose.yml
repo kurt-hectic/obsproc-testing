@@ -12,7 +12,7 @@ services:
       - NGINX_HOST=obsproc-test-env.wis2-testing.net
 
     volumes:
-      - ./test-data/out-test:/usr/share/nginx/html/data/cache/a/ru-aviamettelecom/data/core/weather/surface-based-observations/synop
+      - ./test-data/${NOTIFICATION_DATA_DIR}:/usr/share/nginx/html/data/cache/a/ru-aviamettelecom/data/core/weather/surface-based-observations/synop
     
 
   test-node:
@@ -21,24 +21,24 @@ services:
     command: tail -F anything
 
     environment:
-      - BROKER_HOST=test-broker
-      - BROKER_PORT=1883
-      - CONTENT_INTEGRATED_RATE=1 # all content is integrated
-      - INTEGRITY_CHECKSUM_RATE=0
-      - INTEGRITY_LENGTH_CONTENT_RATE=0
-      - INTEGRITY_LENGTH_LINK_RATE=0
-      - INTEGRITY_SCHEMA_RATE=0
-      - INTEGRITY_PUBDATE_RATE=0
-      - INTEGRITY_NO_DATAID_RATE=0
-      - NR_DUPLICATES_MAX=1 # no duplicates
-      - NR_DUPLICATES_MIN=1 # no duplicates
-      - DUPLICATE_MAX_DELAY_MS=1000
-      - NR_CACHES=1 # only one cache simulated
-      - MSG_RATE_PER_SECOND=10000
-      - CACHE_HOST=obsproc-test-env
-      - CACHE_DOMAIN=wis2-testing.net
+      - BROKER_HOST=${BROKER_HOST}
+      - BROKER_PORT=${BROKER_PORT}
+      - CONTENT_INTEGRATED_RATE=${CONTENT_INTEGRATED_RATE}
+      - INTEGRITY_CHECKSUM_RATE=${INTEGRITY_CHECKSUM_RATE}
+      - INTEGRITY_LENGTH_CONTENT_RATE=${INTEGRITY_LENGTH_CONTENT_RATE}
+      - INTEGRITY_LENGTH_LINK_RATE=${INTEGRITY_LENGTH_LINK_RATE}
+      - INTEGRITY_SCHEMA_RATE=${INTEGRITY_SCHEMA_RATE}
+      - INTEGRITY_PUBDATE_RATE=${INTEGRITY_PUBDATE_RATE}
+      - INTEGRITY_NO_DATAID_RATE=${INTEGRITY_NO_DATAID_RATE}
+      - NR_DUPLICATES_MAX=${NR_DUPLICATES_MAX} # no duplicates
+      - NR_DUPLICATES_MIN=${NR_DUPLICATES_MIN} # no duplicates
+      - DUPLICATE_MAX_DELAY_MS=${DUPLICATE_MAX_DELAY_MS}
+      - NR_CACHES=${NR_CACHES} # only one cache simulated
+      - MSG_RATE_PER_SECOND=${MSG_RATE_PER_SECOND}
+      - CACHE_HOST=${CACHE_HOST}
+      - CACHE_DOMAIN=${CACHE_DOMAIN}
       - DATA_DIR=/data
 
     volumes: 
-      - ./test-data/out-test:/data
+      - ./test-data/${NOTIFICATION_DATA_DIR}:/data
       - ./test-node:/app
