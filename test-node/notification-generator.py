@@ -68,7 +68,7 @@ def process_file(file_name,counter):
     n["properties"]["wigos_station_identifier"] = wsi
     n["id"] = n["id"] + "-" + str(counter)
 
-    if random.random() >= content_integrated_rate:
+    if random.random() < content_integrated_rate:
         n["properties"].pop("content")
     else:
         n["properties"]["content"] = {
