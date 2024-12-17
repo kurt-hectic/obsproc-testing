@@ -101,7 +101,7 @@ def process_file(file_name,counter):
         n_new["id"] = n_new["id"] + "-" + str(i)
 
         if nr_caches>1:
-            cache = "http://{host}-{nr}.{domain}/{cache_root_dir}".format(host=cache_host,nr=random.randint(1,nr_caches),domain=cache_domain,cache_root_dir=cache_root_dir))
+            cache = "http://{host}-{nr}.{domain}/{cache_root_dir}".format(host=cache_host,nr=random.randint(1,nr_caches),domain=cache_domain,cache_root_dir=cache_root_dir)
         else:
             cache = "http://{host}.{domain}/{cache_root_dir}".format(host=cache_host,domain=cache_domain,cache_root_dir=cache_root_dir)
 
