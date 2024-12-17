@@ -31,6 +31,7 @@ duplicate_max_delay_ms = int(os.environ.get("DUPLICATE_MAX_DELAY_MS"))
 nr_caches = int(os.environ.get("NR_CACHES"))
 cache_host = os.environ.get("CACHE_HOST")
 cache_domain = os.environ.get("CACHE_DOMAIN")
+cache_root_dir = os.environ.get("CACHE_ROOTDIR","")
 msg_rate = int(os.environ.get("MSG_RATE_PER_SECOND"))
 max_messages = int(os.environ.get("MAX_MESSAGES"), 0)
 
@@ -100,13 +101,13 @@ def process_file(file_name,counter):
         n_new["id"] = n_new["id"] + "-" + str(i)
 
         if nr_caches>1:
-            cache = "http://{host}-{nr}.{domain}".format(host=cache_host,nr=random.randint(1,nr_caches),domain=cache_domain)
+            cache = "http://{host}-{nr}.{domain}/{cache_root_dir}".format(host=cache_host,nr=random.randint(1,nr_caches),domain=cache_domain,cache_root_dir=cache_root_dir))
         else:
-            cache = "http://{host}.{domain}".format(host=cache_host,domain=cache_domain)
+            cache = "http://{host}.{domain}/{cache_root_dir}".format(host=cache_host,domain=cache_domain,cache_root_dir=cache_root_dir)
 
         rel_filename = file_name.split("/")[-2] + "/" + file_name.split("/")[-1]
 
-        n_new["links"][0]["href"] = n_new["links"][0]["href"].replace("http://test-cache",cache).replace("WIGOS_0-20000-0-20674_20240618T120000",rel_filename)
+        n_new["links"][0]["href"] = n_new["links"][0]["href"].replace("http://test-cache/",cache).replace("WIGOS_0-20000-0-20674_20240618T120000",rel_filename)
 
         return n_new
 
