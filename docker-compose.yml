@@ -37,6 +37,7 @@ services:
       - MAX_MESSAGES=${MAX_MESSAGES}
       - CACHE_HOST=${CACHE_HOST}
       - CACHE_DOMAIN=${CACHE_DOMAIN}
+      - CACHE_ROOTDIR=${CACHE_ROOTDIR}
       - DATA_DIR=/data
       - TEST_ID=${TEST_ID}
 
