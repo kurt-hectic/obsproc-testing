@@ -103,13 +103,12 @@ def process_file(file_name,counter):
         rel_filename = file_name.split("/")[-2] + "/" + file_name.split("/")[-1]
 
         if nr_caches>1:
-            cache = "{host}-{nr}.{domain}/{cache_root_dir}/{rel_filename}".format(host=cache_host,nr=random.randint(1,nr_caches),domain=cache_domain,cache_root_dir=cache_root_dir, rel_filename=rel_filename)
+            cache = "{host}-{nr}.{domain}{cache_root_dir}{rel_filename}".format(host=cache_host,nr=random.randint(1,nr_caches),domain=cache_domain,cache_root_dir=cache_root_dir, rel_filename=rel_filename)
         else:
-            cache = "{host}.{domain}/{cache_root_dir}/{rel_filename}".format(host=cache_host,domain=cache_domain,cache_root_dir=cache_root_dir,rel_filename=rel_filename)
+            cache = "{host}.{domain}{cache_root_dir}{rel_filename}".format(host=cache_host,domain=cache_domain,cache_root_dir=cache_root_dir,rel_filename=rel_filename)
 
 
         n_new["links"][0]["href"] = cache 
-        n_new["links"][0]["href"].replace("http://test-cache/",cache).replace("WIGOS_0-20000-0-20674_20240618T120000",rel_filename)
 
         return n_new
 
