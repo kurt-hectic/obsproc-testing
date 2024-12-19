@@ -69,7 +69,7 @@ def process_file(file_name,counter):
 
     n["properties"]["data_id"] = n["properties"]["data_id"]+ "-"+test_id+"-" + wsi + "-" + observation_time
     n["properties"]["wigos_station_identifier"] = wsi
-    n["id"] = n["id"] + "-" + str(counter)
+    n["id"] = n["id"][:-7] + "{:07d}".format(counter)
 
     if random.random() < content_integrated_rate:
         n["properties"].pop("content")
@@ -87,7 +87,8 @@ def process_file(file_name,counter):
     n["links"][0]["length"] = len(data) + (10 if random.random() < integrity_length_link_rate else 0)
 
     if random.random() < integrity_schema_rate:
-        n["findme"] = "I am not supposed to be here"
+        n["wrongversion"] = n["version"]
+        del n["version"]
 
     if random.random() < integrity_pubdate_rate:
         n["properties"]["pubtime"] = "the day before yesterday"
@@ -98,7 +99,7 @@ def process_file(file_name,counter):
     for i in range(1,random.randint(nr_duplicates_min,nr_duplicates_max)+1):
         n_new = copy.deepcopy(n)
 
-        n_new["id"] = n_new["id"] + "-" + str(i)
+        n_new["id"] = n_new["id"][:-7] + "{:07d}".format(counter)
 
         rel_filename = file_name.split("/")[-2] + "/" + file_name.split("/")[-1]
 
